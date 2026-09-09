@@ -149,6 +149,18 @@
     color: var(--muted); margin: 0;
   }
 
+  .terima {
+    font-family: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
+    font-size: clamp(1.3rem, 4.6vw, 2.6rem);
+    line-height: 1.05; letter-spacing: .13em;
+    color: var(--accent); margin: 0 0 -14px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .terima::after {
+    content: ""; flex: 1 1 auto; min-width: 18px; height: 1px;
+    background: linear-gradient(90deg, var(--line), transparent);
+  }
+
   /* ============ HERO ============ */
   .hero { position: relative; z-index: 1; display: flex; align-items: center; overflow: hidden; }
   .hero::before { content: ""; position: absolute; inset: 0; background: var(--glow); pointer-events: none; }
@@ -555,6 +567,7 @@
   </button>
 
   <div class="hero-inner">
+    <p class="terima">THANK YOU FOR ALL MEMORIES</p>
     <p class="eyebrow">Untuk adik aku &middot; sebelum kau bertolak</p>
     <h1>Haikal,<br>pergi <em>dulu.</em></h1>
     <p class="lede">Aku tak dapat hantar kau hari tu. Tapi jangan silap &mdash; tak ada satu hari pun aku tak ada untuk kau.</p>
