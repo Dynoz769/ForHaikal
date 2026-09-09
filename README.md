@@ -31,6 +31,15 @@ baca untuk sesiapa yang boleh buka, tulis untuk editor sahaja.
 
 Air menitik di latar dan intro dilukis atas `<canvas>`.
 
+**Peranti.** Diuji dari lebar 280px (skrin luar Galaxy Fold) sampai 2560px, tema
+Subuh dan Malam, termasuk telefon melintang dan skrin pendek — tiada skrol
+mendatar di mana-mana lebar tu. Semua JS ditulis gaya ES5 dan setiap API yang
+lebih baharu ada pemeriksaan sendiri. CSS moden ada jalan keluar: `color-mix`
+diganti warna pejal melalui `@supports` untuk Safari bawah 16.2 dan Chrome bawah
+111, `backdrop-filter` ada awalan `-webkit-`, dan `inset` ditulis longhand. Yang
+masih perlukan browser agak baharu cuma `gap` dalam flexbox (Safari iOS 14.5 ke
+atas); bawah tu susun atur masih terbaca, cuma elemen berdempet.
+
 Halaman ini sengaja TIDAK menghormati `prefers-reduced-motion`. Windows yang
 matikan kesan animasi (MinAnimate = 0) buat Chrome melaporkan tetapan tu, dan
 dulu ia membekukan intro serta seluruh peralihan CSS pada mesin pemilik halaman
