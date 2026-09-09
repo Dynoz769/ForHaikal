@@ -65,7 +65,7 @@
 
   /* ============ PINTU MASUK ============ */
   .pintu {
-    position: fixed; inset: 0; z-index: 60; background: #000;
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 60; background: #000;
     display: flex; align-items: center; justify-content: center;
     overflow: hidden; color: #fff;
   }
@@ -99,10 +99,10 @@
   .pintu-tanya:hover .pintu-garis, .pintu-btn:focus-visible + .pintu-garis { width: 120px; }
   .pintu-nota { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #6a6a72; margin: 0; }
 
-  .intro { position: absolute; inset: 0; opacity: 0; }
+  .intro { position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: 0; }
   .pintu.main .intro { opacity: 1; }
   /* mutlak + inset supaya saiz kanvas datang dari bekas, bukan dari atribut dia sendiri */
-  #intro-cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  #intro-cv { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; display: block; }
 
   .langkau {
     position: absolute; bottom: 26px; right: 24px; z-index: 3;
@@ -120,7 +120,7 @@
     display: inline-flex; align-items: center; justify-content: center;
     background: color-mix(in srgb, var(--surface) 88%, transparent);
     border: 1px solid var(--line); color: var(--ink-soft);
-    cursor: pointer; backdrop-filter: blur(8px);
+    cursor: pointer; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
     box-shadow: var(--shadow);
     transition: color .25s ease, border-color .25s ease, transform .2s ease;
   }
@@ -166,11 +166,11 @@
 
   /* ============ HERO ============ */
   .hero { position: relative; z-index: 1; display: flex; align-items: center; overflow: hidden; }
-  .hero::before { content: ""; position: absolute; inset: 0; background: var(--glow); pointer-events: none; }
+  .hero::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: var(--glow); pointer-events: none; }
 
   /* hujan turun di belakang seluruh halaman, bukan setakat bahagian atas */
   #sky {
-    position: fixed; inset: 0; width: 100%; height: 100%;
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%;
     display: block; z-index: 0; pointer-events: none;
   }
   .hero-inner {
@@ -201,7 +201,7 @@
     border: 1px solid var(--line); color: var(--ink-soft);
     border-radius: 999px; padding: 7px 14px 7px 11px; cursor: pointer;
     font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
   }
   .toggle:hover { color: var(--ink); border-color: var(--accent); }
   .toggle svg { width: 14px; height: 14px; }
@@ -215,7 +215,7 @@
     border-radius: 4px;
     padding: 12px 18px 10px;
     min-width: 96px;
-    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
   }
   .unit b {
     display: block;
@@ -342,9 +342,9 @@
 
   /* lightbox */
   .lb {
-    position: fixed; inset: 0; z-index: 40;
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 40;
     background: color-mix(in srgb, var(--bg) 88%, #000);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
     display: flex; align-items: center; justify-content: center;
     padding: 28px 20px;
   }
@@ -388,8 +388,8 @@
     transition: transform .45s cubic-bezier(.4,0,.2,1), opacity .45s ease, box-shadow .45s ease;
   }
   .meterai::before {
-    content: ""; position: absolute; inset: 7px;
-    border: 1px solid color-mix(in srgb, var(--paper) 70%, #000);
+    content: ""; position: absolute; top: 7px; right: 7px; bottom: 7px; left: 7px;
+    border: 1px solid color-mix(in srgb, var(--surface) 70%, #000);
     border-radius: 50%; opacity: .55;
   }
   .kunci.buka .meterai {
@@ -450,7 +450,7 @@
 
   /* ============ PENAMAT: KILAT ============ */
   .kilat {
-    position: fixed; inset: 0; z-index: 45; pointer-events: none;
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 45; pointer-events: none;
     background: #fff; opacity: 0;
   }
 
@@ -476,7 +476,7 @@
 
   .dash { position: relative; overflow: hidden; }
   .dash::after {
-    content: ""; position: absolute; inset: 0;
+    content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0;
     background: linear-gradient(90deg, transparent, var(--accent), transparent);
     transform: translateX(-105%);
   }
@@ -541,6 +541,21 @@
   @media (max-height: 520px) {
     .lb-kotak img { max-height: 64vh; }
     .lb { padding: 12px; }
+  }
+  /* Safari bawah 16.2 dan Chrome bawah 111 tak faham color-mix. Nilai yang ada var()
+     tak jatuh ke deklarasi sebelumnya — ia jadi nilai awal (lut sinar). Jadi warna
+     pejal disediakan khas di sini supaya panel dan meterai tetap ada isi. */
+  @supports not (background: color-mix(in srgb, red 50%, transparent)) {
+    .lagu-btn, .toggle, .unit { background: var(--surface); }
+    .letter::after { background: var(--accent); }
+    .foto:hover { border-color: var(--accent); }
+    .foto .bingkai { background: var(--line); }
+    .lb { background: rgba(0, 0, 0, .88); }
+    .kunci.buka, .kunci.buka .kunci-status { border-color: var(--accent); }
+    .meterai { box-shadow: 0 0 0 4px var(--line); }
+    .meterai::before { border-color: var(--line); }
+    .laluan .nyala { text-shadow: 0 0 16px var(--accent); }
+    .laluan .hujung-nyala { text-shadow: 0 0 22px var(--accent); }
   }
 </style>
 
@@ -1251,7 +1266,10 @@
     root.setAttribute("data-theme", gelapKah() ? "light" : "dark");
     labelkan(); warnaHujan(); lukisHujan();
   });
-  mq.addEventListener("change", function () { labelkan(); warnaHujan(); lukisHujan(); });
+  var tukarSuasana = function () { labelkan(); warnaHujan(); lukisHujan(); };
+  /* Safari bawah 14 hanya ada addListener; tanpa cabang ni ia campak ralat dan hujan tak jalan */
+  if (mq.addEventListener) { mq.addEventListener("change", tukarSuasana); }
+  else if (mq.addListener) { mq.addListener(tukarSuasana); }
 
   labelkan();
   warnaHujan();
