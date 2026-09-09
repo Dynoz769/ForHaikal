@@ -1,3 +1,5 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Surat Untuk Haikal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -151,13 +153,14 @@
 
   .terima {
     font-family: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
-    font-size: clamp(1.3rem, 4.6vw, 2.6rem);
-    line-height: 1.05; letter-spacing: .13em;
+    font-size: clamp(1.3rem, 4.3vw, 2.6rem);
+    line-height: 1.05; letter-spacing: .13em; text-wrap: balance;
     color: var(--accent); margin: 0 0 -14px;
-    display: flex; align-items: center; gap: 16px;
+    display: flex; align-items: center;
   }
+  /* garis halus lepas teks; guna margin, bukan gap — Safari lama tak sokong gap dalam flex */
   .terima::after {
-    content: ""; flex: 1 1 auto; min-width: 18px; height: 1px;
+    content: ""; flex: 1 1 0%; min-width: 18px; height: 1px; margin-left: 16px;
     background: linear-gradient(90deg, var(--line), transparent);
   }
 
@@ -502,6 +505,9 @@
     .lagu-btn { right: 14px; bottom: 14px; width: 42px; height: 42px; }
     .wrap { padding: 0 18px 32px; }
     .hero-inner { padding: 74px 18px 48px; gap: 22px; }
+    /* telefon: garis dibuang supaya teks dapat seluruh lebar — kalau fon Bebas tak sampai, ia pecah dua baris tanpa terkeluar skrin */
+    .terima { display: block; letter-spacing: .1em; margin-bottom: -10px; }
+    .terima::after { display: none; }
     .unit { min-width: 0; flex: 1 1 calc(50% - 5px); padding: 10px 14px 9px; }
     section { padding-top: 62px; }
     .sec-head { margin-bottom: 20px; }
