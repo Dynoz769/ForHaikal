@@ -223,7 +223,10 @@
   }
   .hero h1 {
     font-size: clamp(3.2rem, 12vw, 8rem);
-    font-variation-settings: "opsz" 144;
+    /* opsz 144 buat Fraunces hilang palang H dan e sepenuhnya — "Haikal, pergi"
+       render sebagai "Iaikal, pcrgi", walaupun pada skrin DPR 3. Bentuk huruf pada
+       72 masih paparan, cuma palangnya ada. */
+    font-variation-settings: "opsz" 72;
     font-weight: 300;
     line-height: .9;
     letter-spacing: -.03em;
